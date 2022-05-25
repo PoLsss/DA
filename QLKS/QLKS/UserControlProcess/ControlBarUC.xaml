@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="QLKS.UserControlProcess.ControlBarUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QLKS.UserControlProcess"
+             mc:Ignorable="d" 
+             Tag="Title"
+             x:Name ="ucControlBar"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="Transparent"
+             FontFamily="{DynamicResource MaterialDesignFont}"  MinHeight="0"
+             >
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <materialDesign:ColorZone Mode="PrimaryLight" >
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right"  Background="Transparent" Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="2 4 2 4"></Setter>
+                            <Setter Property="Width" Value="40"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Command="{Binding MinimizeWindowCommand}" 
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                        ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="ForestGreen">
+                        <materialDesign:PackIcon Kind="WindowMinimize" />
+                    </Button>
+                    <Button Command="{Binding MaximizeWindowCommand}" 
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                        ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="ForestGreen">
+                        <materialDesign:PackIcon Kind="WindowMaximize" />
+                    </Button>
+                    <Button Command="{Binding CloseWindowCommand}" 
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                            ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="OrangeRed">
+                        <materialDesign:PackIcon Kind="WindowClose" />
+                    </Button>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Hotel" Width="30" Height="30" HorizontalAlignment="Left"/>
+                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="{Binding Tag, ElementName=ucControlBar}"></TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+</UserControl>
